@@ -1,7 +1,7 @@
-version: '3.7'
+version: '3'
 
 volumes:
-  grafana_data: {}
+  grafana_data:
 
 services:
   blackbox_exporter:
@@ -39,13 +39,14 @@ services:
       - blackbox_exporter
       - node_exporter
   grafana:
-    image: grafana/grafana
-    user: "472"
+    image: grafana/grafana:5.1.0
+    # build: ./grafana
+    user: "472:472"
     container_name: grafana
     ports:
       - "3000:3000"
-        #volumes:
-        #- ./grafana_data:/var/lib/grafana
+    volumes:
+      - ./grafana_data:/var/lib/grafana
     depends_on:
       - prometheus
     restart: always
