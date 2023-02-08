@@ -5,7 +5,7 @@ services:
     image: prom/blackbox-exporter
     container_name: blackbox
     ports:
-      - "12115:9115"
+      - "9115:9115"
     volumes:
       - type: bind
         source: ./blackbox/blackbox.yml
@@ -19,14 +19,14 @@ services:
     image: prom/node-exporter
     container_name: node
     ports:
-      - "12100:9100"
+      - "9100:9100"
     restart: always
 
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:latest
     container_name: cadvisor
     ports:
-      - "12080:8080"
+      - "8080:8080"
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:rw
